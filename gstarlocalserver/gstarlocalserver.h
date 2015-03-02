@@ -3,6 +3,9 @@
 
 #include <QtCore/QObject>
 #include <QtNetwork/QLocalServer>
+#include <QtNetwork/QLocalSocket>
+
+#include "gstarlocalglobal.h"
 
 class GStarLocalServerPrivate;
 class GStarLocalServer : public QObject
@@ -21,7 +24,10 @@ public:
     QLocalServer *server() const;
 
 private:
-    Q_PRIVATE_SLOT(d_func(), void onServerDestroyed())
+    Q_PRIVATE_SLOT(d_func(), void _q_destroyed())
+    Q_PRIVATE_SLOT(d_func(), void _q_newConnection())
+    Q_PRIVATE_SLOT(d_func(), void _q_error(QLocalSocket::LocalSocketError))
+    Q_PRIVATE_SLOT(d_func(), void _q_readyRead())
 };
 
 #endif // GSTARLOCALSERVER_H

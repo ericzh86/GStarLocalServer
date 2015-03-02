@@ -24,4 +24,6 @@ HEADERS += \
     gstarlocalserver/gstarlocalserver.h \
     gstarlocalserver/gstarlocalsocket.h \
     gstarlocalserver/gstarlocalsocket_p.h \
-    gstarlocalserver/gstarlocalserver_p.h
+    gstarlocalserver/gstarlocalserver_p.h \
+    gstarlocalserver/gstarlocalglobal.h \
+    gstarlocalserver/gstarlocalheader.h

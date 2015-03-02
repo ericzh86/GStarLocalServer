@@ -4,6 +4,7 @@
 #include <QtCore/private/qobject_p.h>
 
 #include "gstarlocalsocket.h"
+#include "gstarlocalheader.h"
 
 class GStarLocalSocketPrivate : public QObjectPrivate
 {
@@ -15,8 +16,19 @@ public:
 
 public:
     QPointer<QLocalSocket> socket;
+    QScopedArrayPointer<char> buffer;
+
 public:
-    void onSocketDestroyed();
+    void _q_destroyed();
+    void _q_error(QLocalSocket::LocalSocketError socketError);
+    void _q_readyRead();
+
+public:
+    GStarChunkHeader chunkHeader;
+    QHash<quint16, QVector<QByteArray> > chunkBuffers;
+
+public:
+    void dispatch();
 };
 
 #endif // GSTARLOCALSOCKET_P_H

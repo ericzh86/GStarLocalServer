@@ -4,6 +4,8 @@
 #include <QtCore/QObject>
 #include <QtNetwork/QLocalSocket>
 
+#include "gstarlocalglobal.h"
+
 class GStarLocalSocketPrivate;
 class GStarLocalSocket : public QObject
 {
@@ -20,8 +22,19 @@ public:
     void setSocket(QLocalSocket *socket);
     QLocalSocket *socket() const;
 
+Q_SIGNALS:
+    void received(const QVector<QByteArray> &chunks);
+public:
+    bool post(const QByteArray &data);
+    bool post(const char *data, qint64 size);
+
+    bool post(SocketId target, const QByteArray &data);
+    bool post(SocketId target, const char *data, qint64 size);
+
 private:
-    Q_PRIVATE_SLOT(d_func(), void onSocketDestroyed())
+    Q_PRIVATE_SLOT(d_func(), void _q_destroyed())
+    Q_PRIVATE_SLOT(d_func(), void _q_error(QLocalSocket::LocalSocketError socketError))
+    Q_PRIVATE_SLOT(d_func(), void _q_readyRead())
 };
 
 #endif // GSTARLOCALSOCKET_H
