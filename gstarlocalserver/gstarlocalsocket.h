@@ -33,7 +33,7 @@ public:
 
 private:
     Q_PRIVATE_SLOT(d_func(), void _q_destroyed())
-    Q_PRIVATE_SLOT(d_func(), void _q_error(QLocalSocket::LocalSocketError socketError))
+    Q_PRIVATE_SLOT(d_func(), void _q_error(QLocalSocket::LocalSocketError))
     Q_PRIVATE_SLOT(d_func(), void _q_readyRead())
 };
 
