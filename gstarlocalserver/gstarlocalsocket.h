@@ -14,6 +14,8 @@ public:
     explicit GStarLocalSocket(QObject *parent = 0);
     explicit GStarLocalSocket(QLocalSocket *socket, QObject *parent = 0);
 
+Q_SIGNALS:
+    void socketChanged(QLocalSocket *socket);
 public:
     void setSocket(QLocalSocket *socket);
     QLocalSocket *socket() const;

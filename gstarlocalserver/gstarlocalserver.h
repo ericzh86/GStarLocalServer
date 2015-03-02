@@ -14,6 +14,8 @@ public:
     explicit GStarLocalServer(QObject *parent = 0);
     explicit GStarLocalServer(QLocalServer *server, QObject *parent = 0);
 
+Q_SIGNALS:
+    void serverChanged(QLocalServer *server);
 public:
     void setServer(QLocalServer *server);
     QLocalServer *server() const;
