@@ -3,7 +3,7 @@
 
 #include <QtCore/QtGlobal>
 
-#define MAX_CHUNK_SIZE 0x000FFFFFLL
+#define MAX_CHUNK_SIZE 0x0000FFFFLL
 
 class GStarChunkHeader
 {
